@@ -2,27 +2,45 @@ import "./App.css";
 import ExpenseItem from "./components/ExpenseItem";
 
 function App() {
-  const expenseList = [
+  const expenses = [
     {
-      date: new Date("2022-11-11"),
-      name: "An expensive car",
-      price: 70000,
+      id: "e1",
+      title: "Toilet Paper",
+      amount: 94.12,
+      date: new Date(2020, 7, 14),
     },
     {
-      date: new Date("2022-10-11"),
-      name: "An expensive phone",
-      price: 3999,
+      id: "e2",
+      title: "New TV",
+      amount: 799.49,
+      date: new Date(2021, 2, 12),
     },
     {
-      date: new Date("2020-11-11"),
-      name: "An expensive iron",
-      price: 400,
+      id: "e3",
+      title: "Car Insurance",
+      amount: 294.67,
+      date: new Date(2021, 2, 28),
+    },
+    {
+      id: "e4",
+      title: "New Desk (Wooden)",
+      amount: 450,
+      date: new Date(2021, 5, 12),
     },
   ];
 
+  // args is used to select second element of the map method which is index lol
+  const ExpenseList = () => {
+    let listCreatedDynamically = expenses.map((...args) => {
+      return <ExpenseItem expenses={expenses[args[1]]} />;
+    });
+
+    return <div>{listCreatedDynamically}</div>;
+  };
+
   return (
     <div className="App">
-      <ExpenseItem expenses={expenseList} />
+      <ExpenseList />
     </div>
   );
 }
