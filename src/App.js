@@ -1,5 +1,5 @@
 import "./App.css";
-import ExpenseItem from "./components/ExpenseItem";
+import ExpenseList from "./components/ExpenseList";
 
 function App() {
   const expenses = [
@@ -29,18 +29,9 @@ function App() {
     },
   ];
 
-  // args is used to select second element of the map method which is index lol
-  const ExpenseList = () => {
-    let listCreatedDynamically = expenses.map((...args) => {
-      return <ExpenseItem expenses={expenses[args[1]]} />;
-    });
-
-    return <ul>{listCreatedDynamically}</ul>;
-  };
-
   return (
     <div className="App">
-      <ExpenseList />
+      <ExpenseList expenses={expenses} />
     </div>
   );
 }
