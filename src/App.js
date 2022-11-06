@@ -35,7 +35,7 @@ function App() {
       return <ExpenseItem expenses={expenses[args[1]]} />;
     });
 
-    return <div>{listCreatedDynamically}</div>;
+    return <ul>{listCreatedDynamically}</ul>;
   };
 
   return (

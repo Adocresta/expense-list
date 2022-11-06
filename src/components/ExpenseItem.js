@@ -4,13 +4,13 @@ import "./ExpenseItem.css";
 const ExpenseItem = (props) => {
   const { expenses } = props;
   return (
-    <div className="expense-item">
+    <li className="expense-item">
       <h2 className="expense-item__date">{expenses.date.toUTCString()}</h2>
       <div className="expense-item__description">
         <h2>{expenses.title}</h2>
         <div className="expense-item__price">${expenses.amount}</div>
       </div>
-    </div>
+    </li>
   );
 };
 
