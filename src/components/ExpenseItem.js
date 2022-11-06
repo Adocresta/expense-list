@@ -3,24 +3,11 @@ import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
   const { expenses } = props;
-  const month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const month = expenses.date.toLocaleString("en-US", { month: "long" });
   return (
     <li className="expense-item">
       <date className="expense-item__date">
-        <div>{month[expenses.date.getMonth()]}</div>
+        <div>{month}</div>
         <div>{expenses.date.getDate()}</div>
         <div>{expenses.date.getFullYear()}</div>
       </date>

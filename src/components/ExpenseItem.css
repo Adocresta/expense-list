@@ -61,6 +61,7 @@
   max-width: 100px;
   border: #3a3a3a solid 1px;
   border-radius: 10px;
+  min-width: 80px;
 }
 
 .expense-item__date div {
