@@ -1,8 +1,10 @@
+import { useState } from "react";
 import "./App.css";
-import ExpenseList from "./components/ExpenseList";
+import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
+import ExpenseList from "./components/Expenses/ExpenseList";
 
-function App() {
-  const expenses = [
+const App = () => {
+  const [expenses, setExpenses] = useState([
     {
       id: "e1",
       title: "Toilet Paper",
@@ -27,13 +29,27 @@ function App() {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
-  ];
+  ]);
+
+  const userInputHandler = (userInput) => {
+    console.log(userInput);
+    setExpenses((prevState) => [
+      {
+        id: "e4",
+        title: userInput,
+        amount: Math.round(Math.random() * 1000),
+        date: new Date(),
+      },
+      ...prevState,
+    ]);
+  };
 
   return (
     <div className="App">
+      <ExpenseForm onExpenseFormSave={userInputHandler} />
       <ExpenseList expenses={expenses} />
     </div>
   );
-}
+};
 
 export default App;
