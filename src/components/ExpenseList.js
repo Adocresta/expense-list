@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./Card";
 import ExpenseItem from "./ExpenseItem";
+import "./ExpenseList.css";
 
 // args is used to select second element of the map method which is index lol
 const ExpenseList = (props) => {
@@ -10,7 +11,7 @@ const ExpenseList = (props) => {
 
   return (
     <Card>
-      <ul>{listCreatedDynamically}</ul>
+      <ul className="card-list">{listCreatedDynamically}</ul>
     </Card>
   );
 };
