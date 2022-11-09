@@ -1,3 +1,5 @@
+@import "./components/base/_Utilities.css";
+
 .App {
   text-align: center;
 }

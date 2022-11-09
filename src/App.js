@@ -35,10 +35,10 @@ const App = () => {
     console.log(userInput);
     setExpenses((prevState) => [
       {
-        id: "e4",
-        title: userInput,
-        amount: Math.round(Math.random() * 1000),
-        date: new Date(),
+        id: userInput.id,
+        title: userInput.title,
+        amount: userInput.amount,
+        date: userInput.date,
       },
       ...prevState,
     ]);

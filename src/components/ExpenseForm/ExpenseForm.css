@@ -1,0 +1,22 @@
+.expense-form {
+  padding: 10px;
+  min-width: 300px;
+}
+
+.expense-form input,
+.expense-form label {
+  font-size: 1rem;
+}
+
+.expense-form__section {
+  text-align: left;
+}
+
+/* TODO: Try to spacebetween the input and the label */
+.expense-form__section input {
+  align-self: flex-end;
+}
+
+.expense-form .btn {
+  text-align: end;
+}
