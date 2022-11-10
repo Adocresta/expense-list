@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
 import ExpenseList from "./components/Expenses/ExpenseList";
+import ExpensesFilter from "./components/Expenses/ExpensesFilter";
 
 const App = () => {
   const [expenses, setExpenses] = useState([
@@ -44,10 +45,20 @@ const App = () => {
     ]);
   };
 
+  const [selectedYear, setSelectedYear] = useState("all");
+  const yearSelectHandler = (selectedYearValue) => {
+    setSelectedYear(selectedYearValue);
+    // console.log(selectedYear);
+  };
+
   return (
     <div className="App">
       <ExpenseForm onExpenseFormSave={userInputHandler} />
-      <ExpenseList expenses={expenses} />
+      <ExpensesFilter
+        className="u-margin-bottom-small"
+        onYearSelect={yearSelectHandler}
+      />
+      <ExpenseList expenses={expenses} yearFilterValue={selectedYear} />
     </div>
   );
 };
