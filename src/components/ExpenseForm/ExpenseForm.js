@@ -4,6 +4,7 @@ import Card from "../UI/Card";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
+  // All user inputs are saved here
   const [userInput, setUserInput] = useState({
     id: Math.random().toString(),
     title: "New TV",
@@ -13,30 +14,34 @@ const ExpenseForm = (props) => {
     date: new Date(2021, 2, 12),
   });
 
+  // Lifts the data up a component
+  const submitHandler = (e) => {
+    e.preventDefault();
+    props.onExpenseFormSave(userInput);
+  };
+
+  // User data handler
   const titleChangeHandler = (e) => {
     setUserInput((prevState) => {
       return { ...prevState, title: e.target.value };
     });
   };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    // // using default enter submit for now FIXED
-    props.onExpenseFormSave(userInput);
-  };
-
+  // User data handler
   const amountChangeHandler = (e) => {
     setUserInput((prevState) => {
       return { ...prevState, amount: e.target.value };
     });
   };
 
+  // User data handler
   const dateChangeHandler = (e) => {
     setUserInput((prevState) => {
       return { ...prevState, date: new Date(e.target.value) };
     });
   };
 
+  // Data inputs
   return (
     <Card className="expense-form u-margin-bottom-small">
       <form onSubmit={submitHandler}>
@@ -49,6 +54,7 @@ const ExpenseForm = (props) => {
             type="text"
             id="expense-cost"
             name="expense-cost"
+            required
           />
         </div>
         <div className="expense-form__section">
@@ -57,9 +63,14 @@ const ExpenseForm = (props) => {
           </label>
           <input
             onChange={amountChangeHandler}
-            type="text"
+            type="number"
+            min="0"
+            max="10000"
+            // if no step-> it will only accept 0-1 number no decimal
+            step="0.01"
             id="expense-cost"
             name="expense-cost"
+            required
           />
         </div>
         <div className="expense-form__section">
@@ -71,6 +82,7 @@ const ExpenseForm = (props) => {
             type="date"
             id="expense-cost"
             name="expense-cost"
+            required
           />
         </div>
         <div className="btn">
