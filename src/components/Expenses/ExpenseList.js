@@ -5,23 +5,21 @@ import "./ExpenseList.css";
 
 // args is used to select second element of the map method which is index lol
 const ExpenseList = (props) => {
-  const allExpensesList = props.expenses.map((...args) => {
-    return <ExpenseItem key={args[0].id} expenses={props.expenses[args[1]]} />;
+  // returns all the expenses list if selected year value is 'all' otherwises checks the selected year
+  const filteredExpensesList = props.expenses.filter((expense) => {
+    return props.yearFilterValue === "all"
+      ? props.expenses
+      : expense.date.getUTCFullYear().toString() === props.yearFilterValue;
   });
 
-  const listCreatedDynamically = props.expenses.map((...args) => {
-    return props.yearFilterValue ===
-      props.expenses[args[1]].date.getUTCFullYear().toString() ? (
-      <ExpenseItem key={args[0].id} expenses={props.expenses[args[1]]} />
-    ) : null;
+  // not using index anymore cuz it's useless
+  const listCreatedDynamically = filteredExpensesList.map((expense) => {
+    return <ExpenseItem key={expense.id} expenses={expense} />;
   });
-
-  const showList =
-    props.yearFilterValue === "all" ? allExpensesList : listCreatedDynamically;
 
   return (
     <Card>
-      <ul className="card-list">{showList}</ul>
+      <ul className="card-list">{listCreatedDynamically}</ul>
     </Card>
   );
 };
