@@ -6,6 +6,7 @@ import "./ExpenseForm.css";
 const ExpenseForm = (props) => {
   // All user inputs are saved here
   const [userInput, setUserInput] = useState({
+    // ? BUG Not working as intended it uses the same id over and over again
     id: Math.random().toString(),
     title: "New TV",
     // random number between 0-1000
