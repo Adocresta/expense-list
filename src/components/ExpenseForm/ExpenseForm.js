@@ -10,7 +10,7 @@ const ExpenseForm = (props) => {
     // this value will be user for the first element only
     id: Math.random().toString(),
     title: "",
-    amount: "",
+    amount: 0,
     date: new Date(),
   });
 

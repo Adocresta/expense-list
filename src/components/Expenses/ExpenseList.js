@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Card from "../UI/Card";
+import ExpenseChart from "./ExpenseChart";
 import ExpenseItem from "./ExpenseItem";
 import "./ExpenseList.css";
 import ExpensesFilter from "./ExpensesFilter";
@@ -20,6 +21,7 @@ const ExpenseList = (props) => {
     return <ExpenseItem key={expense.id} expenses={expense} />;
   });
 
+  // conditionally renders the list JSX or the list not found warning
   const expensesContent =
     filteredExpensesList.length > 0 ? (
       <Card>
@@ -31,6 +33,7 @@ const ExpenseList = (props) => {
 
   return (
     <>
+      <ExpenseChart filteredExpenses={filteredExpensesList} />
       <ExpensesFilter
         className="u-margin-bottom-small"
         onYearSelect={setSelectedValue}
