@@ -8,16 +8,18 @@ const ExpenseForm = (props) => {
   const [userInput, setUserInput] = useState({
     // ? BUG Not working as intended it uses the same id over and over again
     id: Math.random().toString(),
-    title: "New TV",
-    // random number between 0-1000
-    // ? Not working as intended only 1 random number is generated and it never changes
-    amount: Math.floor(Math.random() * 1000),
-    date: new Date(2021, 2, 12),
+    title: "",
+    amount: 0,
+    date: new Date(),
   });
 
   // Lifts the data up a component
   const submitHandler = (e) => {
     e.preventDefault();
+    const randomID = Math.random().toString();
+    setUserInput((prevState) => {
+      return { ...prevState, id: randomID };
+    });
     props.onExpenseFormSave(userInput);
   };
 
@@ -47,7 +49,7 @@ const ExpenseForm = (props) => {
     <Card className="expense-form u-margin-bottom-small">
       <form onSubmit={submitHandler}>
         <div className="expense-form__section">
-          <label for="expense-cost" className="expense-form__label">
+          <label htmlFor="expense-cost" className="expense-form__label">
             Cost Title
           </label>
           <input
@@ -59,7 +61,7 @@ const ExpenseForm = (props) => {
           />
         </div>
         <div className="expense-form__section">
-          <label for="expense-cost" className="expense-form__label">
+          <label htmlFor="expense-cost" className="expense-form__label">
             Amount
           </label>
           <input
@@ -75,7 +77,7 @@ const ExpenseForm = (props) => {
           />
         </div>
         <div className="expense-form__section">
-          <label for="expense-cost" className="expense-form__label">
+          <label htmlFor="expense-cost" className="expense-form__label">
             Date
           </label>
           <input

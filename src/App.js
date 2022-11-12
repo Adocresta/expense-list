@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
 import ExpenseList from "./components/Expenses/ExpenseList";
-import ExpensesFilter from "./components/Expenses/ExpensesFilter";
 
 const App = () => {
   const [expenses, setExpenses] = useState([
@@ -33,7 +32,6 @@ const App = () => {
   ]);
 
   const userInputHandler = (userInput) => {
-    console.log(userInput);
     setExpenses((prevState) => [
       {
         id: userInput.id,
@@ -45,20 +43,10 @@ const App = () => {
     ]);
   };
 
-  const [selectedYear, setSelectedYear] = useState("all");
-  const yearSelectHandler = (selectedYearValue) => {
-    setSelectedYear(selectedYearValue);
-    // console.log(selectedYear);
-  };
-
   return (
     <div className="App">
       <ExpenseForm onExpenseFormSave={userInputHandler} />
-      <ExpensesFilter
-        className="u-margin-bottom-small"
-        onYearSelect={yearSelectHandler}
-      />
-      <ExpenseList expenses={expenses} yearFilterValue={selectedYear} />
+      <ExpenseList expenses={expenses} />
     </div>
   );
 };
