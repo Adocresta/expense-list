@@ -1,10 +1,11 @@
 import React from "react";
 
 const ExpensesFilter = (props) => {
+  // sends selected value to ExpenseList.js
   const yearSelectHandler = (e) => {
-    // console.log(e.target.value);
     props.onYearSelect(e.target.value);
   };
+
   return (
     <div className={props.className}>
       <select name="date" id="date" onChange={yearSelectHandler}>

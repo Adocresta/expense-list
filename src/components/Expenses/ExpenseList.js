@@ -4,22 +4,18 @@ import ExpenseItem from "./ExpenseItem";
 import "./ExpenseList.css";
 import ExpensesFilter from "./ExpensesFilter";
 
-// args is used to select second element of the map method which is index lol
 const ExpenseList = (props) => {
-  const [selectedYear, setSelectedYear] = useState("all");
-  const yearSelectHandler = (selectedYearValue) => {
-    setSelectedYear(selectedYearValue);
-    // console.log(selectedYear);
-  };
+  // desired filter method of the user. e.g Years & All Years
+  const [selectedValue, setSelectedValue] = useState("all");
 
-  // returns all the expenses list if selected year value is 'all' otherwises checks the selected year
+  // returns the filtered list to users choice
   const filteredExpensesList = props.expenses.filter((expense) => {
-    return selectedYear === "all"
+    return selectedValue === "all"
       ? props.expenses
-      : expense.date.getUTCFullYear().toString() === selectedYear;
+      : expense.date.getUTCFullYear().toString() === selectedValue;
   });
 
-  // not using index anymore cuz it's useless
+  // creates Dynamic JSX for the list
   const listCreatedDynamically = filteredExpensesList.map((expense) => {
     return <ExpenseItem key={expense.id} expenses={expense} />;
   });
@@ -37,7 +33,7 @@ const ExpenseList = (props) => {
     <>
       <ExpensesFilter
         className="u-margin-bottom-small"
-        onYearSelect={yearSelectHandler}
+        onYearSelect={setSelectedValue}
       />
       {expensesContent}
     </>

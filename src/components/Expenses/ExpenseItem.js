@@ -3,7 +3,7 @@ import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
   const { expenses } = props;
-  // you can do this for day and year too
+  // shows the date in the locale language and the locale date format
   const month = expenses.date.toLocaleString("en-US", { month: "long" });
 
   return (

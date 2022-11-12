@@ -6,10 +6,11 @@ import "./ExpenseForm.css";
 const ExpenseForm = (props) => {
   // All user inputs are saved here
   const [userInput, setUserInput] = useState({
-    // ? BUG Not working as intended it uses the same id over and over again
+    // initial random ID value to be overwritten later ->
+    // this value will be user for the first element only
     id: Math.random().toString(),
     title: "",
-    amount: 0,
+    amount: "",
     date: new Date(),
   });
 
@@ -44,7 +45,7 @@ const ExpenseForm = (props) => {
     });
   };
 
-  // Data inputs
+  // User input form to create new expense
   return (
     <Card className="expense-form u-margin-bottom-small">
       <form onSubmit={submitHandler}>
